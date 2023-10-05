@@ -1,4 +1,5 @@
 from TrieNode import TrieNode
+import numpy as np
 
 
 class Trie:
@@ -51,6 +52,58 @@ class Trie:
 
         get(curr,path)
         return answer
+
+    def getSuggestion(self, word : str):
+
+        curr = self.root
+        path = ""
+        suggestions = []
+        minimumDistance = 10e9
+        def levenshtein(self, word1: str, word2: str) -> int:
+            l = np.full((len(word1) + 1, len(word2) + 1), 10e9)
+
+            for i in range(len(word1) + 1):
+                l[i][0] = i
+
+            for i in range(len(word2) + 1):
+                l[0][i] = i
+
+            for i in range(1, len(word1) + 1):
+                for j in range(1, len(word2) + 1):
+                    x = l[i - 1][j - 1] if word1[i - 1] == word2[j - 1] else min(l[i - 1][j], l[i][j - 1],l[i - 1][j - 1]) + 1
+                    l[i][j] = x
+
+            return int(l[len(word1)][len(word2)])
+
+        def get(curr):
+            nonlocal minimumDistance, suggestions,path
+            #if abs(len(word)-len(path)) >  minimumDistance:
+                #return
+
+            path += curr.char
+            if curr.is_end == True:
+                distance = levenshtein(self,word,path)
+
+                #if distance > minimumDistance:
+                 #   path = path[:-1]
+                 #   return
+
+                if distance == minimumDistance:
+                    suggestions.append(path)
+
+                elif distance < minimumDistance:
+                    minimumDistance = distance
+                    suggestions = [path]
+
+            for child in curr.children.values():
+                get(child)
+
+            path = path[:-1]
+
+        get(curr)
+        print(minimumDistance)
+        return suggestions
+
 
     def getAllCharacter(self):
 
