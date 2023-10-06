@@ -78,7 +78,7 @@ class Trie:
         def get(curr):
             nonlocal minimumDistance, suggestions,path
 
-            if len(path)-len(word) > minimumDistance:
+            if len(path)-len(word) > minimumDistance or minimumDistance == 0:
                 return
 
             path += curr.char
