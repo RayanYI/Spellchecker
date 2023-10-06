@@ -1,11 +1,11 @@
 from Trie import Trie
+import time
 
 
 def main():
 
 ########## NAIVE SOLUTION
-    def check_words(word: str) -> bool:  #fonction qui vérifie si un mot est dans le dico
-        dico =[]
+    def check_words(dico,word: str) -> bool:  #fonction qui vérifie si un mot est dans le dico
         return word in dico
 
     def checkSentence() -> bool:
@@ -27,6 +27,12 @@ def main():
                 except:
                     print("Ligne buguée")
         return dico
+
+    a = time.time()
+    print(check_words(initialiseDico(),'coire'))
+    b = time.time()
+    c = b - a
+    print(f"Execution time: {c} seconds")
 #######################################
 
     graph = Trie()
@@ -38,7 +44,17 @@ def main():
             except:
                 print("Ligne buguée")
 
+    l = ["Coire","Woow","loo","AvOiR","raIs","raiSoN","ABFRF"]
 
+    start_time = time.time()
+    #print(graph.getSuggestion("kdfkhdfh"))
+    for e in l:
+        print(graph.getSuggestion(e))
+    #print(graph.checkWord('Coiffeur'))
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Execution time: {execution_time} seconds")
 
 if __name__ == '__main__':
     main()
