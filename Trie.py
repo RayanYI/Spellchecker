@@ -77,10 +77,12 @@ class Trie:
 
         def get(curr):
             nonlocal minimumDistance, suggestions,path
-            #if abs(len(word)-len(path)) >  minimumDistance:
-                #return
+
+            if len(path)-len(word) > minimumDistance:
+                return
 
             path += curr.char
+
             if curr.is_end == True:
                 distance = levenshtein(self,word,path)
 
