@@ -9,7 +9,7 @@ class Trie:
 
     def insert(self, word):
         currentNode = self.root
-
+        word = word.casefold()
         for i in range(len(word)):
 
             if word[i] not in currentNode.children:
@@ -21,7 +21,7 @@ class Trie:
 
     def checkWord(self, word: str):
         curr = self.root
-
+        word = word.casefold()
         def check(curr: Trie, i: int = 0):
             if i == len(word):
                 return curr.is_end
@@ -56,6 +56,7 @@ class Trie:
     def getSuggestion(self, word : str):
 
         curr = self.root
+        word = word.casefold()
         path = ""
         suggestions = []
         minimumDistance = 10e9
