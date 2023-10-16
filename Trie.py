@@ -120,3 +120,16 @@ class Trie:
         dfs(curr)
         return answer[1:]
 
+    def checkFile(self, file: str):
+        with open(file, encoding='utf-8') as file:
+            for row in file:
+                i = 0
+                current = ""
+                while i < len(row):
+                    while i < len(row) and row[i] != ' ':
+                        current += row[i]
+                        i += 1
+                    if len(current) > 0:
+                        print(self.getSuggestion(current))
+                    current = ""
+                    i += 1
