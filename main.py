@@ -32,7 +32,7 @@ def main():
     print(check_words(initialiseDico(),'coire'))
     b = time.time()
     c = b - a
-    print(f"Execution time: {c} seconds")
+    print(f"Execution time Naive: {c} seconds")
 #######################################
 
     graph = Trie()
@@ -44,17 +44,12 @@ def main():
             except:
                 print("Ligne buguée")
 
-    l = ["Coire","Woow","loo","AvOiR","raIs","raiSoN","ABFRF"]
-
     start_time = time.time()
-    #print(graph.getSuggestion("kdfkhdfh"))
-    for e in l:
-        print(graph.getSuggestion(e))
-    #print(graph.checkWord('Coiffeur'))
-
+    print(graph.checkWord('Coiffeur'))
     end_time = time.time()
     execution_time = end_time - start_time
-    print(f"Execution time: {execution_time} seconds")
+    print(f"Execution time Trie: {execution_time} seconds")
+
     graph.checkFile(file="./sentence")
 
 if __name__ == '__main__':
